@@ -1,0 +1,12 @@
+# Ignore all files
+*
+
+# Except these
+!.config
+!.zshenv
+!.bashrc
+!.gitignore
+!README.md
+
+# Exception to above
+.config/zsh/.zsh_history

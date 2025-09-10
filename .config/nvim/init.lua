@@ -2,7 +2,7 @@
 vim.o.number = true
 vim.o.relativenumber = false
 vim.o.signcolumn = "yes"
-vim.o.wrap = false
+vim.o.wrap = true
 vim.o.tabstop = 8
 vim.o.swapfile = false
 vim.g.mapleader = " "
