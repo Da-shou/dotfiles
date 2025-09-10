@@ -21,7 +21,6 @@ vim.pack.add({
 	{ src = "https://github.com/williamboman/mason.nvim" },
 	{ src = "https://github.com/williamboman/mason-lspconfig.nvim" },
 	{ src = "https://github.com/xiyaowong/transparent.nvim" },
-	{ src = "https://github.com/nvim-lualine/lualine.nvim" },
 })
 
 -- Mason setup, specfiy which LSP binaries to install.
@@ -29,20 +28,25 @@ require "mason".setup()
 require "mason-lspconfig".setup()
 
 -- mini.nvim addons. Really useful (and fast) stuff !
-require "mini.pick".setup()    -- File searcher
-require "mini.starter".setup() -- Pretty start screen
-require "mini.notify".setup()  -- Notification window for LSP
-require "mini.icons".setup()   -- File icons
-require "mini.files".setup()   -- File explorer
-require "mini.pairs".setup()   -- Automatic character pairs
-require "mini.tabline".setup() -- Allow multiple tabs
+require "mini.pick".setup()    		-- File searcher
+require "mini.starter".setup() 		-- Pretty start screen
+require "mini.notify".setup()  		-- Notification window for LSP
+require "mini.icons".setup()   		-- File icons
+require "mini.files".setup()   		-- File explorer
+require "mini.pairs".setup()   		-- Automatic character pairs
+require "mini.tabline".setup() 		-- Allow multiple tabs
+require "mini.completion".setup() 	-- Autocompletion trigger w/ typing
+require "mini.snippets".setup()		-- Useful code snippets.
+require "mini.statusline".setup()	-- Prettier status line.
+require "mini.git".setup()		-- Allows for git status on bar
+require "mini.diff".setup()		-- Allows for diff status on bar
 
--- Prettier and more useful status bar
-require "lualine".setup({})
-
+-- Useful keymaps for choosing and searching files.
 vim.keymap.set('n', '<leader>f', ":Pick files<CR>")
 vim.keymap.set('n', '<leader>h', ":Pick help<CR>")
 vim.keymap.set('n', '<leader>e', ":lua MiniFiles.open()<CR>")
+
+-- Next tab, previous tab, delete tab.
 vim.keymap.set('n', '<Tab>', ":bnext<CR>")
 vim.keymap.set('n', '<S-Tab>', ":bprevious<CR>")
 vim.keymap.set('n', '<leader>q', ":write | :bdelete<CR>")
