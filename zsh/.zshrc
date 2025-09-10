@@ -4,6 +4,9 @@ unsetopt beep
 # Does not print '%' for EOL.
 export PROMPT_EOL_MARK=''
 
+# Set sudo editor
+export SUDO_EDITOR=/usr/bin/vim
+
 # Use color with less
 export LESS='-R --use-color -Dd+r$Du+b$'
 
