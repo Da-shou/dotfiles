@@ -45,7 +45,7 @@ require "mini.pairs".setup()   -- Automatic character pairs
 require "mini.tabline".setup() -- Allow multiple tabs
 
 -- Prettier and more useful status bar
-require "lualine".setup()
+require "lualine".setup({})
 
 vim.keymap.set('n', '<leader>f', ":Pick files<CR>")
 vim.keymap.set('n', '<leader>h', ":Pick help<CR>")
