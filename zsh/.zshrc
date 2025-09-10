@@ -18,6 +18,9 @@ alias grep='grep --color=auto'
 alias ip='ip -color=auto'
 alias ls='ls -A -l --color=auto'
 
+# Saving dotfiles with script
+alias dotfiles='~/Scripts/dotfiles.sh'
+
 # Shared ZSH history configuration
 HISTFILE=~/.config/zsh/.zsh_history
 HISTSIZE=10000

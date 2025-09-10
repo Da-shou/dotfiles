@@ -26,14 +26,7 @@ vim.pack.add({
 
 -- Mason setup, specfiy which LSP binaries to install.
 require "mason".setup()
-require "mason-lspconfig".setup({
-	ensure_installed = {
-		'lua_ls',
-		'pyright',
-		'clangd'
-	},
-	automatic_enable = true
-})
+require "mason-lspconfig".setup()
 
 -- mini.nvim addons. Really useful (and fast) stuff !
 require "mini.pick".setup()    -- File searcher

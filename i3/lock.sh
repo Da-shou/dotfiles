@@ -17,9 +17,11 @@ i3lock \
 --force-clock \
 --time-pos x+30:y+h-100 \
 --time-color eeeeeeff \
+--time-font=JetBrainsMono Nerd Font \
 --date-pos tx:ty+30 \
 --date-color eeeeeeff \
 --date-align 1 \
+--date-font=JetBrainsMono Nerd Font \
 --time-align 1 \
 --ringver-color eeeeee88 \
 --ringwrong-color ee000088 \

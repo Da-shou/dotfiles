@@ -1,18 +1,1 @@
-# Ignore all files
-*
-
-# Except these
-!.config
-!.config/**
-!.zshenv
-!.bashrc
-!.gitignore
-!README.md
-
-# Exception to above
-.config/zsh/.zsh_history
-.config/qutebrowser/bookmarks
-.config/discord
-.config/QtProject
-.config/user-dirs.dirs
-.config/user-dirs.locale
+zsh/.zsh_history
