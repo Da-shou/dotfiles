@@ -143,8 +143,7 @@ These next words are important so ==let's highlight them.==
 
 >[!WARNING]
 
->[!CAUTION]
-
+>[!CAUTION] 
 
 >[!ABSTRACT]
 >
