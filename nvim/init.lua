@@ -43,6 +43,7 @@ require "mini.completion".setup() -- Autocompletion trigger w/ typing
 require "mini.snippets".setup()   -- Useful code snippets.
 require "mini.git".setup()        -- Allows for git status on bar
 require "mini.diff".setup()       -- Allows for diff status on bar
+require "mini.surround".setup()	  -- Easily surround selections.
 
 -- Pretty devicons for statusline
 require "nvim-web-devicons".setup()
@@ -69,15 +70,23 @@ vim.keymap.set('n', '<leader>q', ":write | :bdelete<CR>")
 vim.keymap.set('n', '<leader>md', ":Markview<CR>")
 
 -- Enabling LSP
-vim.lsp.enable({ "lua_ls", "pyright", "clangd" })
+vim.lsp.enable({ 
+	"lua_ls", 
+	"pyright", 
+	"clangd", 
+	"markdown-oxide",
+	"cmake"
+})
 
 -- Setting the colorscheme
 vim.cmd.colorscheme "catppuccin"
 
 -- Enable treesitter AFTER colorscheme.
 require "nvim-treesitter.configs".setup({
+	ensure_installed = "all",
+	ignore_install = {
+		"ipkg"
+	},
 	highlight = {enable = true},
-	preview = {
-		icon_provider = "devicons"
-	}
+	preview = {icon_provider = "mini"}
 })

@@ -218,3 +218,5 @@ exec i3-sensible-terminal --hold -e "fastfetch"
 
 # Run compositor
 exec_always --no-startup-id picom --config ~/.config/picom/picom.conf
+
+for_window [title="^GLFW Debug Window$"] floating enable

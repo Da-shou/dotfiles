@@ -24,6 +24,9 @@ alias ls='ls -A -l --color=auto'
 # Saving dotfiles with script
 alias dotfiles='~/Scripts/dotfiles.sh'
 
+# Lock the screen without going to sleep
+alias lock='~/.config/i3/lock.sh'
+
 # Shared ZSH history configuration
 HISTFILE=~/.config/zsh/.zsh_history
 HISTSIZE=10000
