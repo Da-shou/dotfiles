@@ -35,13 +35,13 @@ These next words are important so ==let's highlight them.==
 |--------|:-----|:------:| --: |
 | 1 | 2 | 3 | 4 |
 | **Bold** | *italic* | ***Bold italic*** | `Inline code` |
-| [Shortcut] | [Link](reddit.com) | ![Image](test.svg) | [[Internal]] |
+| [Shortcut] | [Link](reddit.com) | Nothing ! | [Internal](README.md) |
 
 ### How about a list of unordered elements...
 - First element
 - Second element
     * Optional element
-    * [!] Dangerous element
+    * [!] **Dangerous** element
 - Third element
 
 ### A task list !
