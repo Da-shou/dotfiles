@@ -23,6 +23,7 @@ vim.pack.add({
 	{ src = "https://github.com/xiyaowong/transparent.nvim" },
 	{ src = "https://github.com/nvim-lualine/lualine.nvim" },
 	{ src = "https://github.com/nvim-tree/nvim-web-devicons" },
+	{ src = "https://github.com/nvim-treesitter/nvim-treesitter" },
 	{ src = "https://github.com/OXY2DEV/markview.nvim" },
 })
 
@@ -65,9 +66,18 @@ vim.keymap.set('n', '<leader>e', ":lua MiniFiles.open()<CR>")
 vim.keymap.set('n', '<Tab>', ":bnext<CR>")
 vim.keymap.set('n', '<S-Tab>', ":bprevious<CR>")
 vim.keymap.set('n', '<leader>q', ":write | :bdelete<CR>")
+vim.keymap.set('n', '<leader>md', ":Markview<CR>")
 
 -- Enabling LSP
 vim.lsp.enable({ "lua_ls", "pyright", "clangd" })
 
 -- Setting the colorscheme
 vim.cmd.colorscheme "catppuccin"
+
+-- Enable treesitter AFTER colorscheme.
+require "nvim-treesitter.configs".setup({
+	highlight = {enable = true},
+	preview = {
+		icon_provider = "devicons"
+	}
+})
