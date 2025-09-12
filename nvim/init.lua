@@ -1,4 +1,5 @@
 -- Basic VIM options
+vim.o.number = true
 vim.o.relativenumber = false
 vim.o.signcolumn = "yes"
 vim.o.wrap = true
@@ -68,6 +69,9 @@ vim.keymap.set('n', '<Tab>', ":bnext<CR>")
 vim.keymap.set('n', '<S-Tab>', ":bprevious<CR>")
 vim.keymap.set('n', '<leader>q', ":write | :bdelete<CR>")
 vim.keymap.set('n', '<leader>md', ":Markview<CR>")
+
+-- Run :make command with keybind
+vim.keymap.set('n', '<leader>m', ":make<CR>")
 
 -- Enabling LSP
 vim.lsp.enable({ 
