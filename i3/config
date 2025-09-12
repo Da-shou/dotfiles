@@ -62,7 +62,7 @@ bindsym $mod+d exec --no-startup-id dmenu_run -fn 'JetBrainsMono Nerd Font'
 bindsym $mod+j focus left
 bindsym $mod+k focus down
 bindsym $mod+l focus up
-bindsym $mod+semicolon focus right
+bindsym $mod+eacute focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -74,7 +74,7 @@ bindsym $mod+Right focus right
 bindsym $mod+Shift+j move left
 bindsym $mod+Shift+k move down
 bindsym $mod+Shift+l move up
-bindsym $mod+Shift+semicolon move right
+bindsym $mod+Shift+eacute move right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
@@ -208,10 +208,10 @@ bindcode $mod+67 exec --no-startup-id amixer -c 0 set Master toggle
 exec --no-startup-id "setxkbmap -layout ch -variant fr"
 
 # Set wallpaper
-exec_always --no-startup-id feh --bg-fill --randomize ~/Pictures/Wallpapers/*
+exec_always --no-startup-id ~/.fehbg &
 
 # Set polybar
-exec_always --no-startup-id ~/.config/polybar/launch.sh
+exec_always --no-startup-id ~/.config/polybar/launch.sh &
 
 # Run a terminal on startup
 exec i3-sensible-terminal --hold -e "fastfetch" 
