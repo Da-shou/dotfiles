@@ -11,24 +11,13 @@
 
 set $mod Mod4
 
-# This font is widely installed, provides lots of unicode glyphs, right-to-left
-# text rendering and scalability on retina/hidpi displays (thanks to pango).
-#font pango:DejaVu Sans Mono 8
-
 # Start XDG autostart .desktop files using dex. See also
 # https://wiki.archlinux.org/index.php/XDG_Autostart
 exec --no-startup-id dex --autostart --environment i3
 
-# The combination of xss-lock, nm-applet and pactl is a popular choice, so
-# they are included here as an example. Modify as you see fit.
-
-# xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
-# screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
-
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
-exec --no-startup-id nm-applet
+# exec --no-startup-id nm-applet
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -59,10 +48,10 @@ bindsym $mod+d exec --no-startup-id dmenu_run -fn 'JetBrainsMono Nerd Font'
 # bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
 
 # change focus
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+eacute focus right
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -71,10 +60,10 @@ bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+l move up
-bindsym $mod+Shift+eacute move right
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
@@ -82,11 +71,13 @@ bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
-# split in horizontal orientation
-bindsym $mod+h split h
+mode "split" {
+	bindsym h split h; mode "default"
+	bindsym v split v; mode "default"
+	bindsym Escape mode "default"
+}
 
-# split in vertical orientation
-bindsym $mod+v split v
+bindsym $mod+semicolon mode "split"
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
@@ -179,12 +170,19 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+# Execute Automounting deamon
+exec --no-startup-id udiskie -a
+exec_always killall dunst; --no-startup-id dunst -config ~/.config/dunst/dunstrc
+
+# Take a screenshot
+bindsym $mod+p exec --no-startup-id "~/Scripts/shotgun_screenshot.sh"
+
 # Activate lockscreen
-bindsym $mod+x exec "~/.config/i3/lock.sh; systemctl sleep"
+bindsym $mod+x exec "~/.config/i3/lock.sh; sleep 0.5; systemctl sleep";
 
 # Load Nerd font
 font pango:Noto Color Emoji 10
-font pango:JetBrainsMono Nerd Font 10
+font pango:JetBrainsMono Nerd Font bold 10
 
 # Add padding between windows
 gaps inner 10
@@ -193,19 +191,23 @@ gaps left 10
 gaps right 10
 gaps bottom 0
 
-# Media keys shortcuts
-bindcode $mod+67 exec --no-startup-id amixer -c 0 set Master toggle
-
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
-#bar {
-#        status_command i3status
-#font pango:Noto Color Emoji 10
-#	font pango:JetBrainsMono Nerd Font 12
-#}
+# class                 border  backgr. text    indicator child_border
+client.focused          #4c7899 #285577AA #ffffff #2e9ef4   #285577
+client.focused_inactive #333333 #5f676aAA #ffffff #484e50   #5f676a
+client.unfocused        #333333 #222222AA #888888 #292d2e   #222222
+client.urgent           #2f343a #900000AA #ffffff #900000   #900000
+client.placeholder      #000000 #0c0c0cAA #ffffff #000000   #0c0c0c
 
 # Load correct keys
 exec --no-startup-id "setxkbmap -layout ch -variant fr"
+
+# Run compositor 
+exec_always --no-startup-id killall picom; \
+sleep 0.2; picom --config ~/.config/picom/picom.conf;
+
+# Run terminal
+exec sleep 0.3; i3-sensible-terminal --hold -e "fastfetch";
+exec sleep 0.4; i3-sensible-terminal -e "yazi";
 
 # Set wallpaper
 exec_always --no-startup-id ~/.fehbg &
@@ -213,10 +215,12 @@ exec_always --no-startup-id ~/.fehbg &
 # Set polybar
 exec_always --no-startup-id ~/.config/polybar/launch.sh &
 
-# Run a terminal on startup
-exec i3-sensible-terminal --hold -e "fastfetch" 
+# Align window titles to the center
+title_align center
 
-# Run compositor
-exec_always --no-startup-id sleep 0.2; killall -q picom; picom --config ~/.config/picom/picom.conf &
+# Make image and video players floating
+for_window [class="mpv"] floating enable
+for_window [class="feh"] floating enable
 
+# Debugging for project
 for_window [title="^GLFW Debug Window$"] floating enable

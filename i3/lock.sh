@@ -1,6 +1,6 @@
 #!/bin/sh
-
 i3lock \
+--ignore-empty-password \
 --blur 16 \
 --bar-indicator \
 --bar-pos y+h \

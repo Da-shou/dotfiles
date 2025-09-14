@@ -40,11 +40,21 @@ require "mini.icons".setup()      -- File icons
 require "mini.files".setup()      -- File explorer
 require "mini.pairs".setup()      -- Automatic character pairs
 require "mini.tabline".setup()    -- Allow multiple tabs
-require "mini.completion".setup() -- Autocompletion trigger w/ typing
-require "mini.snippets".setup()   -- Useful code snippets.
 require "mini.git".setup()        -- Allows for git status on bar
 require "mini.diff".setup()       -- Allows for diff status on bar
 require "mini.surround".setup()	  -- Easily surround selections.
+
+-- Autocompletion trigger w/ typing
+require "mini.completion".setup()
+
+-- Useful code snippets.
+local gen_loader = require "mini.snippets".gen_loader
+require "mini.snippets".setup({
+	snippets = {
+		gen_loader.from_lang()
+	}
+})
+-- MiniSnippets.start_lsp_server()
 
 -- Pretty devicons for statusline
 require "nvim-web-devicons".setup()
@@ -74,12 +84,15 @@ vim.keymap.set('n', '<leader>md', ":Markview<CR>")
 vim.keymap.set('n', '<leader>m', ":make<CR>")
 
 -- Enabling LSP
-vim.lsp.enable({ 
-	"lua_ls", 
-	"pyright", 
-	"clangd", 
+vim.lsp.config('*', {capabilities = MiniCompletion.get_lsp_capabilities()})
+vim.lsp.enable({
+	"lua_ls",
+	"java_language_server",
+	"pyright",
+	"clangd",
 	"markdown-oxide",
-	"cmake"
+	"cmake",
+	"lemminx"
 })
 
 -- Setting the colorscheme

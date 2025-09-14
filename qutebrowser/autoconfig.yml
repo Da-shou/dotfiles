@@ -6,6 +6,8 @@
 
 config_version: 2
 settings:
+  colors.tabs.bar.bg:
+    global: '#555555'
   colors.webpage.darkmode.algorithm:
     global: lightness-cielab
   colors.webpage.darkmode.enabled:
@@ -23,3 +25,7 @@ settings:
     - normal {line}G{column0}l
   fonts.default_family:
     global: JetBrainsMono Nerd Font
+  url.default_page:
+    global: https://start.duckduckgo.com/
+  window.transparent:
+    global: true

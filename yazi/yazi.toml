@@ -1,0 +1,41 @@
+# File manager settings
+[mgr]
+ratio = [4,4,0]
+sort_dir_first = true
+show_hidden = false
+
+# Preview settings (normally hidden)
+[preview]
+wrap="no"
+tab_size=8
+
+# Custom openers
+[opener]
+edit = [
+	{ run = '$EDITOR "$@"', block = true, for = "unix" }
+]
+display = [
+	{ run = 'feh --geometry 960x540 --auto-zoom --scale-down "$@"', block = false, for = "unix" }
+]
+play = [
+	{ run = 'mpv --autofit-larger=50% "$@"', block = false, for = "unix" }
+]
+pdf = [
+	{ run = 'mupdf "$@"', block = false, for = "unix" }
+]
+run = [
+	{ run = 'kitty -e "$@"', block = false, for = "unix"}
+]
+
+# Openers defintions.
+[open]
+prepend_rules = [
+	{ mime = "text/*", use = "edit" },
+	{ mime = "image/*", use = "display" },
+	{ mime = "video/*", use = "play" },
+	{ mime = "audio/*", use = "play" },
+	{ mime = "application/pdf", use = "pdf"}
+]
+append_rules = [
+	{ name = "*", use = "run" }
+]
