@@ -1,4 +1,0 @@
-[[mgr.prepend_keymap]]
-on = "<C-h>"
-run = 'hidden = "toggle"'
-desc = "Toggles the visibility of hidden files"
