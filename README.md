@@ -90,68 +90,77 @@ These next words are important so ==let's highlight them.==
 >
 > It also contains an empty line.
 
->[!ABSTRACT]
+> [!ABSTRACT]
 
->[!SUMMARY]
+> [!SUMMARY]
 
->[!TLDR]
+> [!TLDR]
 
->[!TODO]
+> [!TODO]
 
->[!INFO]
+> [!INFO] 
 
->[!SUCCESS]
+> [!SUCCESS]
 
->[!CHECK]
+> [!CHECK]
 
->[!DONE]
+> [!DONE]
 
->[!QUESTION]
+> [!QUESTION]
 
->[!HELP]
+> [!HELP]
 
->[!FAQ]
+> [!FAQ]
 
->[!FAILURE]
+> [!FAILURE]
 
->[!FAIL]
+> [!FAIL]
 
->[!MISSING]
+> [!MISSING]
 
->[!DANGER]
+> [!DANGER]
 
->[!ERROR]
+> [!ERROR]
 
->[!BUG]
+> [!BUG]
 
->[!EXAMPLE]
+> [!EXAMPLE]
 
->[!QUOTE]
+> [!QUOTE]
 
->[!CITE]
+> [!CITE]
 
->[!HINT]
-
->[!ATTENTION]
+> [!HINT]
 
 
->[!NOTE]
+> [!ATTENTION]
+> Some text
 
->[!TIP]
 
->[!IMPORTANT]
+> [!NOTE]
+> This is a note !
 
->[!WARNING]
 
->[!CAUTION] 
+> [!TIP]
+> This is a great tip.
 
->[!ABSTRACT]
->
-> >[!SUCCESS] Custom title
-> >
-> > >[!QUESTION]
-> > >
-> > > >[!FAILURE] Custom title
-> > > >
+
+> [!IMPORTANT]
+> Important ?
+
+> [!WARNING]
+> Watch out !
+
+> [!CAUTION] 
+> Be cautious.
+
+> [!ABSTRACT]
+> I am abstract.
+> > [!SUCCESS] Custom title
+> > Good job !
+> > > [!QUESTION]
+> > > How to write great code ?
+> > > > [!FAILURE] Custom title
+> > > > Use ChatGPT.
 
 ---
