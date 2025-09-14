@@ -206,7 +206,7 @@ exec_always --no-startup-id killall picom; \
 sleep 0.2; picom --config ~/.config/picom/picom.conf;
 
 # Run terminal
-exec sleep 0.3; i3-sensible-terminal -e "fastfetch";
+exec sleep 0.3; i3-sensible-terminal --hold -e "fastfetch";
 exec sleep 0.4; i3-sensible-terminal -e "yazi";
 
 # Set wallpaper
