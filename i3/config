@@ -175,7 +175,7 @@ exec --no-startup-id udiskie -a
 exec_always killall dunst; --no-startup-id dunst -config ~/.config/dunst/dunstrc
 
 # Take a screenshot
-bindsym $mod+p exec --no-startup-id "~/Scripts/shotgun_screenshot.sh"
+bindsym $mod+p --release exec notify-send --icon "video-display" 'Screenshot taken' &&  --no-startup-id "~/Scripts/shotgun_screenshot.sh"
 
 # Activate lockscreen
 bindsym $mod+x exec "~/.config/i3/lock.sh; sleep 0.5; systemctl sleep";
