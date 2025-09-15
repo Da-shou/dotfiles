@@ -2,12 +2,13 @@
 vim.o.number = true
 vim.o.relativenumber = false
 vim.o.signcolumn = "yes"
-vim.o.wrap = false
+vim.o.wrap = true
 vim.o.tabstop = 8
 vim.o.swapfile = false
 vim.g.mapleader = " "
 vim.o.winborder = "rounded"
 
+local home = vim.fn.expand("~")
 vim.cmd("set cmdheight=0")
 
 -- Keybinding for sourcing
@@ -33,6 +34,7 @@ vim.pack.add({
 	{ src = "https://github.com/hrsh7th/cmp-cmdline" },
 	{ src = "https://github.com/abeldekat/cmp-mini-snippets" },
 	{ src = "https://github.com/hrsh7th/nvim-cmp" },
+	{ src = "https://github.com/onsails/lspkind.nvim" },
 })
 
 -- Mason setup, specfiy which LSP binaries to install.
@@ -57,39 +59,20 @@ require "mini.notify".setup({
 	},
 })   -- Notification window for LSP
 
+-- Get the path where friendly-snippets is installed
 local snippets = require "mini.snippets"
 snippets.setup({
 	snippets = {
-		snippets.gen_loader.from_lang()
+		snippets.gen_loader.from_lang(),
 	}
 })
+
+-- Starts LSP-Internal server from mini.snippets 
+-- so CMP sees the snippets from an LSP.
 snippets.start_lsp_server()
 
--- Autocompletion trigger w/ typing	
-local cmp = require 'cmp'
-cmp.setup({
-	snippet = {
-		expand = function(args)
-			local insert = snippets.config.expand.insert or snippets.default_insert
-			insert({ body = args.body }) -- Insert at cursor 
-			cmp.resubscribe({ "TextChangedI", "TextChangedP" })
-			require("cmp.config").set_onetime({ sources = {} })
-		end
-	},
-	mapping = cmp.mapping.preset.insert({
-		['<C-b>'] = cmp.mapping.scroll_docs(-4),
-		['<C-f>'] = cmp.mapping.scroll_docs(4),
-		['<C-Space>'] = cmp.mapping.complete(),
-		['<C-e>'] = cmp.mapping.abort(),
-		['<CR>'] = cmp.mapping.confirm({ select = true }),
-	}),
-	sources = {
-		{ name = 'nvim_lsp' },
-		{ name = 'mini.snippets' },
-		{ name = 'buffer' },
-		{ name = 'path' }
-	}
-})
+-- Autocompletion trigger w/ typing
+dofile(home .. "/.config/nvim/cmpc.lua")
 
 -- Pretty devicons for statusline
 require "nvim-web-devicons".setup()
@@ -119,29 +102,10 @@ vim.keymap.set('n', '<leader>md', ":Markview<CR>")
 vim.keymap.set('n', '<leader>m', ":make<CR>")
 
 -- Configuring the different LSPs.
--- Lua LSP
-local lspconfig = require("lspconfig")
-vim.lsp.config("lua_ls", {
-	settings = {
-		Lua = {
-			diagnostics = {
-				globals = { "vim" },
-			},
-			completion = {
-				callSnippet = "Replace",
-			}
-		},
-	}
-})
-
--- Java LSP
-vim.lsp.config("jdtls", {
-	settings = {
-		java = {
-			home = "usr/bin/java"
-		}
-	}
-})
+-- lua_ls config.
+dofile(home .. "/.config/nvim/lspc/lua_ls.lua")
+-- jdtl config.	
+dofile(home .. "/.config/nvim/lspc/jdtls.lua")
 
 -- Adding the completions capabilities to the LSP
 vim.lsp.config("*", {capabilities = require "cmp_nvim_lsp".default_capabilities()})
