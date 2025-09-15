@@ -2,7 +2,7 @@
 vim.o.number = true
 vim.o.relativenumber = false
 vim.o.signcolumn = "yes"
-vim.o.wrap = true
+vim.o.wrap = false
 vim.o.tabstop = 8
 vim.o.swapfile = false
 vim.g.mapleader = " "
@@ -26,6 +26,13 @@ vim.pack.add({
 	{ src = "https://github.com/nvim-tree/nvim-web-devicons" },
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter" },
 	{ src = "https://github.com/OXY2DEV/markview.nvim" },
+	{ src = "https://github.com/rafamadriz/friendly-snippets" },
+	{ src = "https://github.com/hrsh7th/cmp-nvim-lsp" },
+	{ src = "https://github.com/hrsh7th/cmp-buffer" },
+	{ src = "https://github.com/hrsh7th/cmp-path" },
+	{ src = "https://github.com/hrsh7th/cmp-cmdline" },
+	{ src = "https://github.com/abeldekat/cmp-mini-snippets" },
+	{ src = "https://github.com/hrsh7th/nvim-cmp" },
 })
 
 -- Mason setup, specfiy which LSP binaries to install.
@@ -33,28 +40,56 @@ require "mason".setup()
 require "mason-lspconfig".setup()
 
 -- mini.nvim addons. Really useful (and fast) stuff !
-require "mini.pick".setup()       -- File searcher
-require "mini.starter".setup()    -- Pretty start screen
-require "mini.notify".setup()     -- Notification window for LSP
-require "mini.icons".setup()      -- File icons
-require "mini.files".setup()      -- File explorer
-require "mini.pairs".setup()      -- Automatic character pairs
-require "mini.tabline".setup()    -- Allow multiple tabs
-require "mini.git".setup()        -- Allows for git status on bar
-require "mini.diff".setup()       -- Allows for diff status on bar
-require "mini.surround".setup()	  -- Easily surround selections.
+require "mini.pick".setup()     -- File searcher
+require "mini.starter".setup()  -- Pretty start screen
+require "mini.icons".setup()    -- File icons
+require "mini.files".setup()    -- File explorer
+require "mini.pairs".setup()    -- Automatic character pairs
+require "mini.tabline".setup()  -- Allow multiple tabs
+require "mini.git".setup()      -- Allows for git status on bar
+require "mini.diff".setup()     -- Allows for diff status on bar
+require "mini.surround".setup() -- Easily surround selections.
 
--- Autocompletion trigger w/ typing
-require "mini.completion".setup()
+-- Notification configuration
+require "mini.notify".setup({
+	lsp_progress = {
+		enable = false,
+	},
+})   -- Notification window for LSP
 
--- Useful code snippets.
-local gen_loader = require "mini.snippets".gen_loader
-require "mini.snippets".setup({
+local snippets = require "mini.snippets"
+snippets.setup({
 	snippets = {
-		gen_loader.from_lang()
+		snippets.gen_loader.from_lang()
 	}
 })
--- MiniSnippets.start_lsp_server()
+snippets.start_lsp_server()
+
+-- Autocompletion trigger w/ typing	
+local cmp = require 'cmp'
+cmp.setup({
+	snippet = {
+		expand = function(args)
+			local insert = snippets.config.expand.insert or snippets.default_insert
+			insert({ body = args.body }) -- Insert at cursor 
+			cmp.resubscribe({ "TextChangedI", "TextChangedP" })
+			require("cmp.config").set_onetime({ sources = {} })
+		end
+	},
+	mapping = cmp.mapping.preset.insert({
+		['<C-b>'] = cmp.mapping.scroll_docs(-4),
+		['<C-f>'] = cmp.mapping.scroll_docs(4),
+		['<C-Space>'] = cmp.mapping.complete(),
+		['<C-e>'] = cmp.mapping.abort(),
+		['<CR>'] = cmp.mapping.confirm({ select = true }),
+	}),
+	sources = {
+		{ name = 'nvim_lsp' },
+		{ name = 'mini.snippets' },
+		{ name = 'buffer' },
+		{ name = 'path' }
+	}
+})
 
 -- Pretty devicons for statusline
 require "nvim-web-devicons".setup()
@@ -83,16 +118,39 @@ vim.keymap.set('n', '<leader>md', ":Markview<CR>")
 -- Run :make command with keybind
 vim.keymap.set('n', '<leader>m', ":make<CR>")
 
--- Enabling LSP
-vim.lsp.config('*', {capabilities = MiniCompletion.get_lsp_capabilities()})
+-- Configuring the different LSPs.
+-- Lua LSP
+local lspconfig = require("lspconfig")
+vim.lsp.config("lua_ls", {
+	settings = {
+		Lua = {
+			diagnostics = {
+				globals = { "vim" },
+			},
+			completion = {
+				callSnippet = "Replace",
+			}
+		},
+	}
+})
+
+-- Java LSP
+vim.lsp.config("jdtls", {
+	settings = {
+		java = {
+			home = "usr/bin/java"
+		}
+	}
+})
+
+-- Adding the completions capabilities to the LSP
+vim.lsp.config("*", {capabilities = require "cmp_nvim_lsp".default_capabilities()})
+
 vim.lsp.enable({
-	"lua_ls",
-	"java_language_server",
-	"pyright",
 	"clangd",
-	"markdown-oxide",
-	"cmake",
-	"lemminx"
+	"lua_ls",
+	"jdtls",
+	"biome"
 })
 
 -- Setting the colorscheme
@@ -104,6 +162,6 @@ require "nvim-treesitter.configs".setup({
 	ignore_install = {
 		"ipkg"
 	},
-	highlight = {enable = true},
-	preview = {icon_provider = "mini"}
+	highlight = { enable = true },
+	preview = { icon_provider = "mini" }
 })
