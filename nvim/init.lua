@@ -98,6 +98,9 @@ vim.keymap.set('n', '<S-Tab>', ":bprevious<CR>")
 vim.keymap.set('n', '<leader>q', ":write | :bdelete<CR>")
 vim.keymap.set('n', '<leader>md', ":Markview<CR>")
 
+-- Toggling transparency
+vim.keymap.set('n', '<leader>t', ":TransparentToggle<CR>")
+
 -- Run :make command with keybind
 vim.keymap.set('n', '<leader>m', ":make<CR>")
 

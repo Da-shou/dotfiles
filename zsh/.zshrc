@@ -7,9 +7,6 @@ export PROMPT_EOL_MARK=''
 # Set sudo editor
 export SUDO_EDITOR=/usr/bin/vim
 
-# Set editor
-export EDITOR="/home/ylli/.local/share/bob/nvim-bin/nvim"
-
 # Use color with less
 export LESS='-R --use-color -Dd+r$Du+b$'
 
