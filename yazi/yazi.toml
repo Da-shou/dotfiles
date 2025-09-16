@@ -1,8 +1,9 @@
 # File manager settings
 [mgr]
-ratio = [2,6,0]
+ratio = [3,5,0]
 sort_dir_first = true
 show_hidden = false
+linemode = "size_and_mtime"
 
 # Preview settings (normally hidden)
 [preview]
