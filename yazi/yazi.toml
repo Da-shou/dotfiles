@@ -13,19 +13,22 @@ tab_size=8
 # Custom openers
 [opener]
 edit = [
-	{ run = '$EDITOR "$@"', block = true, for = "unix", desc = "Editor"}
+	{ run = '$EDITOR "$@"', block = true, for = "unix", desc = "Edit file"}
 ]
 display = [
 	{ run = 'feh --geometry 960x540 --auto-zoom --scale-down "$@"', block = false, for = "unix", desc = "Display" }
 ]
 play = [
-	{ run = 'mpv --autofit-larger=50% "$@"', block = false, for = "unix", desc = "MPV" }
+	{ run = 'mpv --autofit-larger=50% "$@"', block = false, for = "unix", desc = "Open with MPV" }
 ]
 pdf = [
-	{ run = 'mupdf "$@"', block = false, for = "unix", desc = "MuPDF" }
+	{ run = 'mupdf "$@"', block = false, for = "unix", desc = "Open with MuPDF" }
 ]
 run = [
 	{ run = 'kitty -e "$@"', block = false, for = "unix", desc="Run in terminal"}
+]
+unzip = [
+	{ run = 'unzip "$@"', block = false, for = "unix", desc="Unzip here"}
 ]
 
 # Openers defintions.
@@ -35,7 +38,8 @@ prepend_rules = [
 	{ mime = "image/*", use = "display" },
 	{ mime = "video/*", use = "play" },
 	{ mime = "audio/*", use = "play" },
-	{ mime = "application/pdf", use = "pdf"}
+	{ mime = "application/pdf", use = "pdf"},
+	{ mime = "application/zip", use = "unzip"}
 ]
 append_rules = [
 	{ name = "*", use = "run" }
