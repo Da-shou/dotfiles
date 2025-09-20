@@ -20,8 +20,9 @@ alias diff='diff --color=auto'
 alias grep='grep --color=auto'
 alias ip='ip -color=auto'
 alias ls='ls -l --color=auto -h -X'
-alias pcs='sudo pacman -Syu'
+alias spms='sudo pacman -Syu'
 alias cf='clear && fastfetch'
+alias ssn='sudo shutdown now'
 
 # Saving dotfiles with script
 alias dotfiles='~/Scripts/dotfiles.sh'

@@ -44,7 +44,7 @@ cmp.setup({
 		}),
 	},
 	completion = {
-		keyword_pattern = [=[.]=]
+		keyword_pattern = [=[w!]=]
 	},
 	mapping = cmp.mapping.preset.insert({
 		['<C-b>'] = cmp.mapping.scroll_docs(-4),

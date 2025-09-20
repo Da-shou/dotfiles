@@ -6,6 +6,9 @@
 
 config_version: 2
 settings:
+  bindings.commands:
+    global:
+      normal: {}
   colors.tabs.bar.bg:
     global: '#555555'
   colors.webpage.darkmode.algorithm:

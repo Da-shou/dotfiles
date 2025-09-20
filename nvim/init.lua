@@ -70,6 +70,7 @@ snippets.setup({
 -- Starts LSP-Internal server from mini.snippets 
 -- so CMP sees the snippets from an LSP.
 snippets.start_lsp_server()
+vim.lsp.config("mini.snippets", {})
 
 -- Autocompletion trigger w/ typing
 dofile(home .. "/.config/nvim/cmpc.lua")
@@ -104,12 +105,17 @@ vim.keymap.set('n', '<leader>t', ":TransparentToggle<CR>")
 -- Run :make command with keybind
 vim.keymap.set('n', '<leader>m', ":make<CR>")
 
+-- Toggle relative line number
+vim.keymap.set('n', '<leader>lr', ":set invrelativenumber<CR>")
+
 -- Configuring the different LSPs.
 -- lua_ls config.
 dofile(home .. "/.config/nvim/lspc/lua_ls.lua")
 -- jdtl config.	
 dofile(home .. "/.config/nvim/lspc/jdtls.lua")
 
+
+vim.lsp.config('bash-language-server', {})
 -- Adding the completions capabilities to the LSP
 vim.lsp.config("*", {capabilities = require "cmp_nvim_lsp".default_capabilities()})
 
@@ -117,7 +123,8 @@ vim.lsp.enable({
 	"clangd",
 	"lua_ls",
 	"jdtls",
-	"biome"
+	"biome",
+	"bashls",
 })
 
 -- Setting the colorscheme

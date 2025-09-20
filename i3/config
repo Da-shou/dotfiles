@@ -199,7 +199,7 @@ client.urgent           #2f343a #900000AA #ffffff #900000   #900000
 client.placeholder      #000000 #0c0c0cAA #ffffff #000000   #0c0c0c
 
 # Load correct keys
-exec --no-startup-id "setxkbmap -layout ch -variant fr"
+# exec --no-startup-id "setxkbmap -layout ch -variant fr" 
 
 # Run compositor 
 exec_always --no-startup-id killall picom; \
