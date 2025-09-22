@@ -43,8 +43,10 @@ cmp.setup({
 			})
 		}),
 	},
+	matching = {
+		disallow_fuzzy_matching = false
+	},
 	completion = {
-		keyword_pattern = [=[w!]=]
 	},
 	mapping = cmp.mapping.preset.insert({
 		['<C-b>'] = cmp.mapping.scroll_docs(-4),

@@ -1,4 +1,4 @@
 --ignore-errors
 --downloader aria2c
--o ~/Videos/%(title)s.%(ext)s
--f bestvideo[height<=?1080]+bestaudio/best
+-f "bv*[ext=webm]+ba[ext=m4a]/b[ext=mp4] / bv*+ba/b"
+-o $PWD/%(title)s.%(ext)s
