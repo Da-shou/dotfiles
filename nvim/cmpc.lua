@@ -1,25 +1,19 @@
 local lspkind = require "lspkind"
 local cmp = require "cmp"
-local snippets = require "mini.snippets"
 
 -- Make the cmp windows borders' background entirely transparent
 -- Only call this function when the colorscheme nvim function is used.
 vim.api.nvim_create_autocmd("colorscheme", {
 	callback = function()
-		vim.api.nvim_set_hl(0, "CmpBorder", { fg="#333344", bg="NONE" })
-		vim.api.nvim_set_hl(0, "CmpDocBorder", { fg="#333344", bg="NONE" })
+		vim.api.nvim_set_hl(0, "CmpBorder", { fg = "#333344", bg = "NONE" })
+		vim.api.nvim_set_hl(0, "CmpDocBorder", { fg = "#333344", bg = "NONE" })
 	end,
 })
 
 cmp.setup({
-	-- Defining the snippet engine we are using. Right now, this
 	snippet = {
 		expand = function(args)
-			-- Taken from nvim-cmp github, used to use mini.snippets as snippet engine.
-			local insert = snippets.config.expand.insert or snippets.default_insert
-			insert({ body = args.body }) -- Insert at cursor
-			cmp.resubscribe({ "TextChangedI", "TextChangedP" })
-			require("cmp.config").set_onetime({ sources = {} })
+			vim.snippet.expand(args.body)
 		end
 	},
 	window = {
@@ -34,13 +28,14 @@ cmp.setup({
 		}),
 	},
 	formatting = {
+		fields = { "abbr", "kind", "menu" },
 		format = lspkind.cmp_format({
 			mode = "symbol_text",
 			menu = ({
 				nvim_lsp = "LSP",
 				buffer = "Buffer",
 				path = "Path",
-			})
+			}),
 		}),
 	},
 	matching = {
@@ -54,11 +49,14 @@ cmp.setup({
 		['<C-Space>'] = cmp.mapping.complete(),
 		['<C-e>'] = cmp.mapping.abort(),
 		['<CR>'] = cmp.mapping.confirm({ select = true }),
+		['<C-j>'] = cmp.mapping.select_next_item(),
+		['<C-k>'] = cmp.mapping.select_prev_item(),
 	}),
 	sources = {
 		{ name = 'nvim_lsp' },
 		{ name = 'buffer' },
-		{ name = 'path' }
+		{ name = 'path' },
+		{ name = 'nvim_lsp_signature_help' }
 	},
 	experimental = {
 		ghost_text = false
