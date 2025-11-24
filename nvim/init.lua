@@ -53,7 +53,20 @@ require "mason".setup()
 require "mason-lspconfig".setup()
 
 -- File explorer
-require "nvim-tree".setup()
+require "nvim-tree".setup({
+	renderer = {
+		icons = {
+			glyphs = {
+				git = {
+					ignored = ""
+				}
+			}
+		}
+	},
+	git = {
+		ignore = false
+	}
+})
 
 -- Custom terminal config
 dofile(home .. "/.config/nvim/terminal.lua")
