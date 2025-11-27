@@ -3,8 +3,7 @@ vim.keymap.set('n', '<leader>o', ':update | :source %<CR>')
 vim.keymap.set('n', '<leader>lf', vim.lsp.buf.format)
 
 -- Binding Esc to escape terminal and go to buffer above
-vim.keymap.set('t', '<leader><Esc>', "<C-\\><C-n><C-w>k", {silent = true})
-vim.keymap.set('t', '<leader>t', ToggleTermSplit, {silent = true})
+vim.keymap.set('t', '<leader><Esc>', "<C-\\><C-n>", {silent = true})
 
 -- Choosing and searching files.
 vim.keymap.set('n', '<leader>f', ":Files<CR>")
@@ -23,6 +22,8 @@ vim.keymap.set('n', '<leader>m', ":make<CR>")
 
 -- Toggle relative line number
 vim.keymap.set('n', '<leader>lr', ":set invrelativenumber<CR>")
+
+vim.keymap.set('n', '<leader>sm', SwitchMode)
 
 -- LSP-exclusive shortcuts ; only available when an at least 1 LSP is attached
 vim.api.nvim_create_autocmd("LspAttach", {

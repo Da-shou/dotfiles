@@ -106,6 +106,9 @@ require "lualine".setup({
 -- Allows for bulk commenting according to language.
 require "Comment".setup({})
 
+-- Add dark mode switcher
+dofile(home .. "/.config/nvim/darkmode.lua")
+
 -- Add all custom keybinds
 dofile(home .. "/.config/nvim/keymaps.lua")
 

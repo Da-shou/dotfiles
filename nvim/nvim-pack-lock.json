@@ -5,19 +5,15 @@
       "src": "https://github.com/numToStr/Comment.nvim"
     },
     "cmp-buffer": {
-      "rev": "b74fab3",
+      "rev": "b74fab3656eea9de20a9b8116afa3cfc4ec09657",
       "src": "https://github.com/hrsh7th/cmp-buffer"
     },
     "cmp-cmdline": {
-      "rev": "d126061",
+      "rev": "d126061b624e0af6c3a556428712dd4d4194ec6d",
       "src": "https://github.com/hrsh7th/cmp-cmdline"
     },
-    "cmp-mini-snippets": {
-      "rev": "582aea2",
-      "src": "https://github.com/abeldekat/cmp-mini-snippets"
-    },
     "cmp-nvim-lsp": {
-      "rev": "bd5a7d6",
+      "rev": "cbc7b02bb99fae35cb42f514762b89b5126651ef",
       "src": "https://github.com/hrsh7th/cmp-nvim-lsp"
     },
     "cmp-nvim-lsp-signature-help": {
@@ -25,19 +21,11 @@
       "src": "https://github.com/hrsh7th/cmp-nvim-lsp-signature-help"
     },
     "cmp-path": {
-      "rev": "c642487",
+      "rev": "c642487086dbd9a93160e1679a1327be111cbc25",
       "src": "https://github.com/hrsh7th/cmp-path"
     },
-    "conform.nvim": {
-      "rev": "178b8f0d70ee63db616a8b3bda637218eef121dd",
-      "src": "https://github.com/stevearc/conform.nvim"
-    },
-    "friendly-snippets": {
-      "rev": "572f566",
-      "src": "https://github.com/rafamadriz/friendly-snippets"
-    },
     "fzf": {
-      "rev": "3db63f5e52ebf88a483558cbdfa4143fb84e41d0",
+      "rev": "1d5e87f5e48d5c720d040bd738db5c8785fbe225",
       "src": "https://github.com/junegunn/fzf"
     },
     "fzf.vim": {
@@ -48,60 +36,52 @@
       "rev": "005b56001b2cb30bfa61b7986bc50657816ba4ba",
       "src": "https://github.com/lukas-reineke/indent-blankline.nvim"
     },
-    "live-preview.nvim": {
-      "rev": "a1bb1b3a851df5276e53908276f5ae1d724d4812",
-      "src": "https://github.com/brianhuster/live-preview.nvim"
-    },
     "lspkind.nvim": {
-      "rev": "3ddd1b4",
+      "rev": "3ddd1b4edefa425fda5a9f95a4f25578727c0bb3",
       "src": "https://github.com/onsails/lspkind.nvim"
     },
     "lualine.nvim": {
-      "rev": "3946f01",
+      "rev": "47f91c416daef12db467145e16bed5bbfe00add8",
       "src": "https://github.com/nvim-lualine/lualine.nvim"
     },
     "markview.nvim": {
-      "rev": "b41c643",
+      "rev": "b1e024ad5f66b5be331278d1be380a53338a0362",
       "src": "https://github.com/OXY2DEV/markview.nvim"
     },
     "mason-lspconfig.nvim": {
-      "rev": "d7b5feb",
+      "rev": "7d527c76c43f46294de9c19d39c5a86317809b4b",
       "src": "https://github.com/williamboman/mason-lspconfig.nvim"
     },
     "mason.nvim": {
-      "rev": "ad7146a",
+      "rev": "57e5a8addb8c71fb063ee4acda466c7cf6ad2800",
       "src": "https://github.com/williamboman/mason.nvim"
     },
     "mini.nvim": {
-      "rev": "7d6fcfd",
+      "rev": "72b0194c56c984476c5975b62eb340fd1aa1686a",
       "src": "https://github.com/echasnovski/mini.nvim"
     },
     "nvim": {
-      "rev": "234fc04",
+      "rev": "ce4a8e0d5267e67056f9f4dcf6cb1d0933c8ca00",
       "src": "https://github.com/catppuccin/nvim"
     },
     "nvim-cmp": {
-      "rev": "106c4bc",
+      "rev": "d97d85e01339f01b842e6ec1502f639b080cb0fc",
       "src": "https://github.com/hrsh7th/nvim-cmp"
     },
     "nvim-lspconfig": {
-      "rev": "2010fc6",
+      "rev": "f1237a8b3c243608a7116fa1ad216c441d7c2264",
       "src": "https://github.com/neovim/nvim-lspconfig"
-    },
-    "nvim-navic": {
-      "rev": "099b4c8cdc3e9ea026ea6b2a0d315e2d28362242",
-      "src": "https://github.com/SmiteshP/nvim-navic"
     },
     "nvim-tree.lua": {
       "rev": "3fb91e18a727ecc0385637895ec397dea90be42a",
       "src": "https://github.com/nvim-tree/nvim-tree.lua"
     },
     "nvim-treesitter": {
-      "rev": "42fc28ba",
+      "rev": "42fc28ba918343ebfd5565147a42a26580579482",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter"
     },
     "nvim-web-devicons": {
-      "rev": "8dcb311",
+      "rev": "8dcb311b0c92d460fac00eac706abd43d94d68af",
       "src": "https://github.com/nvim-tree/nvim-web-devicons"
     },
     "plenary.nvim": {
@@ -111,10 +91,6 @@
     "rainbow-delimiters.nvim": {
       "rev": "8aafe2cbd89cd4090f573a98cab6b20366576fde",
       "src": "https://github.com/hiphish/rainbow-delimiters.nvim"
-    },
-    "transparent.nvim": {
-      "rev": "8ac5988",
-      "src": "https://github.com/xiyaowong/transparent.nvim"
     }
   }
 }
