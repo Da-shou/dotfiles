@@ -46,6 +46,7 @@ vim.pack.add({
 	{ src = "https://github.com/junegunn/fzf.vim" },
 	{ src = "https://github.com/numToStr/Comment.nvim" },
 	{ src = "https://github.com/nvim-lua/plenary.nvim" },
+	{ src = "https://github.com/kwkarlwang/bufresize.nvim" },
 })
 
 -- Mason setup, specfiy which LSP binaries to install.
@@ -68,8 +69,9 @@ require "nvim-tree".setup({
 	}
 })
 
--- Custom terminal config
-dofile(home .. "/.config/nvim/terminal.lua")
+-- Very useful plugin allowing to keep ratio of splits
+-- when resizing windows.
+require "bufresize".setup()
 
 -- mini.nvim addons. Really useful (and fast) stuff !
 require "mini.pairs".setup()    -- Automatic character pairs
@@ -77,15 +79,18 @@ require "mini.git".setup()      -- Allows for git status on bar
 require "mini.diff".setup()     -- Allows for diff status on bar
 require "mini.surround".setup() -- Easily surround selections.
 
--- Rainbow brackets configuration
-dofile(home .. "/.config/nvim/iblc.lua")
-
 -- Notification configuration
 require "mini.notify".setup({
 	lsp_progress = {
 		enable = false,
 	},
 }) -- Notification window for LSP
+
+-- Custom terminal config
+dofile(home .. "/.config/nvim/terminal.lua")
+
+-- Rainbow brackets configuration
+dofile(home .. "/.config/nvim/iblc.lua")
 
 -- Autocompletion trigger w/ typing
 dofile(home .. "/.config/nvim/cmpc.lua")
