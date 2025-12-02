@@ -47,6 +47,7 @@ vim.pack.add({
 	{ src = "https://github.com/numToStr/Comment.nvim" },
 	{ src = "https://github.com/nvim-lua/plenary.nvim" },
 	{ src = "https://github.com/kwkarlwang/bufresize.nvim" },
+	{ src = "https://github.com/kdheepak/lazygit.nvim" },
 })
 
 -- Mason setup, specfiy which LSP binaries to install.
