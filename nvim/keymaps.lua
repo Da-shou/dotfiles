@@ -23,7 +23,11 @@ vim.keymap.set('n', '<leader>m', ":make<CR>")
 -- Toggle relative line number
 vim.keymap.set('n', '<leader>lr', ":set invrelativenumber<CR>")
 
+-- Switch to dark mode or light mode
 vim.keymap.set('n', '<leader>sm', SwitchMode)
+
+-- Switch to LazyGit
+vim.keymap.set('n', '<leader>g', ":LazyGit<CR>")
 
 -- LSP-exclusive shortcuts ; only available when an at least 1 LSP is attached
 vim.api.nvim_create_autocmd("LspAttach", {
