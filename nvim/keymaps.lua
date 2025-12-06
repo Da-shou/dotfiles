@@ -10,6 +10,9 @@ vim.keymap.set('n', '<leader>f', ":Files<CR>")
 vim.keymap.set('n', '<leader>h', ":Help<CR>")
 vim.keymap.set('n', '<leader>e', ":NvimTreeToggle<CR>")
 
+-- RipGrep search in all files
+vim.keymap.set('n', '<leader>rg', ":RG<CR>")
+
 -- Listing and quitting buffers
 vim.keymap.set('n', '<leader>b', ":Buffers<CR>")
 vim.keymap.set('n', '<leader>q', ":bdelete<CR>")
