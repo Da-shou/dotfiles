@@ -98,9 +98,6 @@ require "mini.notify".setup({
 	},
 }) -- Notification window for LSP
 
--- Custom terminal config
-dofile(home .. "/.config/nvim/terminal.lua")
-
 -- Pretty devicons for statusline
 require "nvim-web-devicons".setup()
 
