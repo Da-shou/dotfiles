@@ -32,6 +32,10 @@ vim.keymap.set('n', '<leader>sm', SwitchMode)
 -- Switch to LazyGit
 vim.keymap.set('n', '<leader>g', ":LazyGit<CR>")
 
+-- Doxygen generation
+local opts = { noremap = true, silent = true }
+vim.api.nvim_set_keymap("n", "<Leader>nf", ":lua require('neogen').generate()<CR>", opts)
+
 -- LSP-exclusive shortcuts ; only available when an at least 1 LSP is attached
 vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function(event)

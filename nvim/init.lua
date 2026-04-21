@@ -40,7 +40,6 @@ vim.pack.add({
 	{ src = "https://github.com/hrsh7th/cmp-buffer" },
 	{ src = "https://github.com/hrsh7th/cmp-path" },
 	{ src = "https://github.com/hrsh7th/cmp-cmdline" },
-	{ src = "https://github.com/hiphish/rainbow-delimiters.nvim" },
 	{ src = "https://github.com/lukas-reineke/indent-blankline.nvim" },
 	{ src = "https://github.com/junegunn/fzf" },
 	{ src = "https://github.com/junegunn/fzf.vim" },
@@ -48,11 +47,20 @@ vim.pack.add({
 	{ src = "https://github.com/nvim-lua/plenary.nvim" },
 	{ src = "https://github.com/kwkarlwang/bufresize.nvim" },
 	{ src = "https://github.com/kdheepak/lazygit.nvim" },
+	{ src = "https://github.com/Saghen/blink.cmp" },
+	{ src = "https://github.com/rafamadriz/friendly-snippets" },
 })
 
 -- Mason setup, specfiy which LSP binaries to install.
 require "mason".setup()
 require "mason-lspconfig".setup()
+
+require "blink.cmp".setup({
+	sources = {
+    		default = { 'lsp', 'path', 'snippets', 'buffer' },
+  	},
+	fuzzy = { implementation = "rust" }
+})
 
 -- File explorer
 require "nvim-tree".setup({
@@ -90,11 +98,9 @@ require "mini.notify".setup({
 -- Custom terminal config
 dofile(home .. "/.config/nvim/terminal.lua")
 
--- Rainbow brackets configuration
-dofile(home .. "/.config/nvim/iblc.lua")
-
 -- Autocompletion trigger w/ typing
-dofile(home .. "/.config/nvim/cmpc.lua")
+-- dofile(home .. "/.config/nvim/cmpc.lua")
+
 
 -- Pretty devicons for statusline
 require "nvim-web-devicons".setup()
@@ -147,7 +153,7 @@ vim.lsp.enable({
 })
 
 -- Setting the colorscheme
-vim.cmd.colorscheme "catppuccin"
+vim.cmd.colorscheme "catppuccin-frappe"
 
 -- Enabling ejs files highlighting
 vim.filetype.add({ extension = { ejs = "ejs" } })

@@ -1,4 +1,4 @@
-local darkmode = "catppuccin-mocha"
+local darkmode = "catppuccin-frappe"
 local lightmode = "catppuccin-latte"
 
 function SwitchMode()

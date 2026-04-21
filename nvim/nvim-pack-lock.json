@@ -4,9 +4,21 @@
       "rev": "e30b7f2008e52442154b66f7c519bfd2f1e32acb",
       "src": "https://github.com/numToStr/Comment.nvim"
     },
+    "blink.cmp": {
+      "rev": "456d38d1cd3743926f329204c2340f3e7840aad6",
+      "src": "https://github.com/Saghen/blink.cmp"
+    },
+    "blink.lib": {
+      "rev": "a459c8fbf51359902971874b5ebe05f6602db8b4",
+      "src": "https://github.com/Saghen/blink.lib"
+    },
     "bufresize.nvim": {
       "rev": "3b19527ab936d6910484dcc20fb59bdb12322d8b",
       "src": "https://github.com/kwkarlwang/bufresize.nvim"
+    },
+    "clang-tidy.nvim": {
+      "rev": "3021a5aee42f58383b6cf3917c98365b37436e60",
+      "src": "https://github.com/emilienlemaire/clang-tidy.nvim"
     },
     "cmp-buffer": {
       "rev": "b74fab3656eea9de20a9b8116afa3cfc4ec09657",
@@ -39,6 +51,10 @@
     "friendly-snippets": {
       "rev": "572f5660cf05f8cd8834e096d7b4c921ba18e175",
       "src": "https://github.com/rafamadriz/friendly-snippets"
+    },
+    "frizbee": {
+      "rev": "5ffa787ddc257dcc91589d82ba826fc0e2744d50",
+      "src": "https://github.com/saghen/frizbee"
     },
     "fzf": {
       "rev": "1d5e87f5e48d5c720d040bd738db5c8785fbe225",
@@ -83,6 +99,10 @@
     "mini.nvim": {
       "rev": "72b0194c56c984476c5975b62eb340fd1aa1686a",
       "src": "https://github.com/echasnovski/mini.nvim"
+    },
+    "neogen": {
+      "rev": "23e7e9f883d01289ebd90e98025acc860ea26366",
+      "src": "https://github.com/danymat/neogen"
     },
     "nvim": {
       "rev": "ce4a8e0d5267e67056f9f4dcf6cb1d0933c8ca00",
