@@ -49,16 +49,19 @@ vim.pack.add({
 	{ src = "https://github.com/kdheepak/lazygit.nvim" },
 	{ src = "https://github.com/Saghen/blink.cmp" },
 	{ src = "https://github.com/rafamadriz/friendly-snippets" },
+	{ src = "https://github.com/akinsho/toggleterm.nvim" },
 })
 
 -- Mason setup, specfiy which LSP binaries to install.
 require "mason".setup()
 require "mason-lspconfig".setup()
 
+require "toggleterm".setup()
+
 require "blink.cmp".setup({
 	sources = {
-    		default = { 'lsp', 'path', 'snippets', 'buffer' },
-  	},
+		default = { 'lsp', 'path', 'snippets', 'buffer' },
+	},
 	fuzzy = { implementation = "rust" }
 })
 
@@ -98,10 +101,6 @@ require "mini.notify".setup({
 -- Custom terminal config
 dofile(home .. "/.config/nvim/terminal.lua")
 
--- Autocompletion trigger w/ typing
--- dofile(home .. "/.config/nvim/cmpc.lua")
-
-
 -- Pretty devicons for statusline
 require "nvim-web-devicons".setup()
 
@@ -137,11 +136,16 @@ vim.lsp.config('htmlhint', {})
 vim.lsp.config('emmet-language-server', {})
 vim.lsp.config('cssls', {})
 
+vim.lsp.config('neocmake', {
+	cmd = { "neocmakelsp", "stdio"},
+})
+
 -- Adding the completions capabilities to the LSP
 vim.lsp.config("*", { capabilities = require "cmp_nvim_lsp".default_capabilities() })
 
 vim.lsp.enable({
 	"clangd",
+	"neocmake",
 	"lua_ls",
 	"jdtls",
 	"bashls",

@@ -3,7 +3,7 @@ vim.keymap.set('n', '<leader>o', ':update | :source %<CR>')
 vim.keymap.set('n', '<leader>lf', vim.lsp.buf.format)
 
 -- Binding Esc to escape terminal and go to buffer above
-vim.keymap.set('t', '<leader><Esc>', "<C-\\><C-n>", {silent = true})
+vim.keymap.set('t', '<Esc>', "<C-\\><C-n>", {silent = true})
 
 -- Choosing and searching files.
 vim.keymap.set('n', '<leader>f', ":Files<CR>")
@@ -29,12 +29,11 @@ vim.keymap.set('n', '<leader>lr', ":set invrelativenumber<CR>")
 -- Switch to dark mode or light mode
 vim.keymap.set('n', '<leader>sm', SwitchMode)
 
+-- Toggle terminal
+vim.keymap.set('n', '<leader>t', ":ToggleTerm size=12 direction=horizontal<CR>", { desc = "Toggle terminal using toggleterm.nvim", noremap = true, silent = true })
+
 -- Switch to LazyGit
 vim.keymap.set('n', '<leader>g', ":LazyGit<CR>")
-
--- Doxygen generation
-local opts = { noremap = true, silent = true }
-vim.api.nvim_set_keymap("n", "<Leader>nf", ":lua require('neogen').generate()<CR>", opts)
 
 -- LSP-exclusive shortcuts ; only available when an at least 1 LSP is attached
 vim.api.nvim_create_autocmd("LspAttach", {
