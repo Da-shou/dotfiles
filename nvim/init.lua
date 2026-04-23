@@ -15,6 +15,13 @@ correctly on startup according to wiki ]]
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
+-- If using the fzf.vim plugin
+vim.g.fzf_binary_path = 'C:/Program Files/fzf/fzf.exe'
+if vim.fn.has("win32") == 1 then
+	vim.opt.shell = "cmd.exe"
+	vim.opt.shellcmdflag = "/c"
+end
+
 -- Put home directory in a variable
 local home = vim.fn.expand("~")
 
@@ -33,7 +40,7 @@ vim.pack.add({
 	{ src = "https://github.com/nvim-lualine/lualine.nvim" },
 	{ src = "https://github.com/nvim-tree/nvim-web-devicons" },
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter" },
-	{ src = "https://github.com/OXY2DEV/markview.nvim" },
+--	{ src = "https://github.com/OXY2DEV/markview.nvim" },
 	{ src = "https://github.com/hrsh7th/nvim-cmp" },
 	{ src = "https://github.com/hrsh7th/cmp-nvim-lsp" },
 	{ src = "https://github.com/hrsh7th/cmp-nvim-lsp-signature-help" },
@@ -48,6 +55,7 @@ vim.pack.add({
 	{ src = "https://github.com/kwkarlwang/bufresize.nvim" },
 	{ src = "https://github.com/kdheepak/lazygit.nvim" },
 	{ src = "https://github.com/Saghen/blink.cmp" },
+	{ src = "https://github.com/Saghen/blink.lib" },
 	{ src = "https://github.com/rafamadriz/friendly-snippets" },
 	{ src = "https://github.com/akinsho/toggleterm.nvim" },
 })
@@ -62,7 +70,7 @@ require "blink.cmp".setup({
 	sources = {
 		default = { 'lsp', 'path', 'snippets', 'buffer' },
 	},
-	fuzzy = { implementation = "rust" }
+	fuzzy = { implementation = "prefer_rust" }
 })
 
 -- File explorer
