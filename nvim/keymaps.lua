@@ -26,6 +26,9 @@ vim.keymap.set('n', '<leader>m', ":make<CR>")
 -- Toggle relative line number
 vim.keymap.set('n', '<leader>lr', ":set invrelativenumber<CR>")
 
+-- Toggle MiniDiff overlay
+vim.keymap.set('n', '<leader>df', function () MiniDiff.toggle_overlay() end, {noremap = true, silent = true})
+
 -- Switch to dark mode or light mode
 vim.keymap.set('n', '<leader>sm', SwitchMode)
 
@@ -52,4 +55,12 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		vim.keymap.set({ 'n', 'x' }, '<F3>', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', opts)
 		vim.keymap.set('n', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
 	end
+})
+
+-- Adding escape to fzf to abort search
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "fzf",
+  callback = function()
+    vim.keymap.set("t", "<Esc>", "<Esc>", { buffer = true, nowait = true })
+  end,
 })

@@ -2,11 +2,19 @@ local darkmode = "catppuccin-frappe"
 local lightmode = "catppuccin-latte"
 
 function SwitchMode()
-	local current = vim.g.colors_name
-
-	if (current == darkmode) then
-		vim.cmd("colorscheme " .. lightmode)
+	if vim.g.colors_name == darkmode then
+		vim.api.nvim_cmd({
+			cmd = "colorscheme",
+			args = {
+				lightmode
+			}
+		}, {})
 	else
-		vim.cmd("colorscheme " .. darkmode)
+		vim.api.nvim_cmd({
+			cmd = "colorscheme",
+			args = {
+				darkmode
+			}
+		}, {})
 	end
 end

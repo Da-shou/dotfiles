@@ -15,15 +15,8 @@ correctly on startup according to wiki ]]
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
--- If using the fzf.vim plugin
-vim.g.fzf_binary_path = 'C:/Program Files/fzf/fzf.exe'
-if vim.fn.has("win32") == 1 then
-	vim.opt.shell = "cmd.exe"
-	vim.opt.shellcmdflag = "/c"
-end
-
 -- Put home directory in a variable
-local home = vim.fn.expand("~")
+local config_path = vim.fn.stdpath("config")
 
 -- Hide command line when not using it
 vim.cmd("set cmdheight=0")
@@ -39,14 +32,7 @@ vim.pack.add({
 	{ src = "https://github.com/williamboman/mason-lspconfig.nvim" },
 	{ src = "https://github.com/nvim-lualine/lualine.nvim" },
 	{ src = "https://github.com/nvim-tree/nvim-web-devicons" },
-	{ src = "https://github.com/nvim-treesitter/nvim-treesitter" },
---	{ src = "https://github.com/OXY2DEV/markview.nvim" },
-	{ src = "https://github.com/hrsh7th/nvim-cmp" },
-	{ src = "https://github.com/hrsh7th/cmp-nvim-lsp" },
-	{ src = "https://github.com/hrsh7th/cmp-nvim-lsp-signature-help" },
-	{ src = "https://github.com/hrsh7th/cmp-buffer" },
-	{ src = "https://github.com/hrsh7th/cmp-path" },
-	{ src = "https://github.com/hrsh7th/cmp-cmdline" },
+	{ src = "https://github.com/romus204/tree-sitter-manager.nvim" },
 	{ src = "https://github.com/lukas-reineke/indent-blankline.nvim" },
 	{ src = "https://github.com/junegunn/fzf" },
 	{ src = "https://github.com/junegunn/fzf.vim" },
@@ -60,11 +46,24 @@ vim.pack.add({
 	{ src = "https://github.com/akinsho/toggleterm.nvim" },
 })
 
+-- Windows stuff for fzf to work correctly...
+if vim.fn.has("win32") == 1 then
+	vim.g.fzf_binary_path = 'C:/Program Files/fzf/fzf.exe'
+	vim.opt.shell = "cmd.exe"
+	vim.opt.shellcmdflag = "/c"
+end
+
 -- Mason setup, specfiy which LSP binaries to install.
 require "mason".setup()
 require "mason-lspconfig".setup()
 
 require "toggleterm".setup()
+
+require "tree-sitter-manager".setup({
+	border = "rounded",
+	auto_install = true,
+	highlight = true,
+})
 
 require "blink.cmp".setup({
 	sources = {
@@ -73,160 +72,69 @@ require "blink.cmp".setup({
 	fuzzy = { implementation = "prefer_rust" }
 })
 
--- Pretty devicons for statusline and nvim-tree
-require "nvim-web-devicons".setup({
-	override_by_filename = {
-		["CMakeLists.txt"] = {
-			color = "#5590de",
-			icon = "",
-			name = "CMakeLists.txt"
-		},
-		["Makefile"] = {
-			color = "#ca8888",
-			icon = "",
-			name = "Makefile"
-		},
-		[".gitignore"] = {
-			color = "#f05133",
-			icon = "󱞃",
-			name = ".gitignore"
-		},
-	};
-	override_by_extension = {
-		["exe"] = {
-			icon = "󰖳",
-			color = "#11bbff",
-			name = "windows-executable"
-		},
-		["glsl"] = {
-			icon = "󰠱",
-			color = "#eedd88",
-			name = "gl-shader-file"
-		},
-		["png"] = {
-			icon = "",
-			color = "#00aaaa",
-			name = "png-image"
-		},
-		["c"] = {
-			icon = "",
-			color = "#5577bb",
-			name = "c-source"
-		},
-		["h"] = {
-			icon = "",
-			color = "#995599",
-			name = "c-header"
-		},
-	};
-})
-
--- File explorer
-require "nvim-tree".setup({
-	renderer = {
-		icons = {
-			glyphs = {
-				git = {
-					ignored = ""
-				}
-			}
-		}
-	},
-	git = {
-		ignore = false
-	}
-})
-
 -- Very useful plugin allowing to keep ratio of splits
 -- when resizing windows.
 require "bufresize".setup()
 
 -- mini.nvim addons. Really useful (and fast) stuff !
-require "mini.pairs".setup()    -- Automatic character pairs
-require "mini.git".setup()      -- Allows for git status on bar
-require "mini.diff".setup()     -- Allows for diff status on bar
-require "mini.surround".setup() -- Easily surround selections.
+require "mini.pairs".setup()      	-- Automatic character pairs.
+require "mini.git".setup()        	-- Allows for git status on bar.
+require "mini.diff".setup()       	-- Allows for diff status on bar.
+require "mini.surround".setup()   	-- Easily surround selections.
+require "mini.cursorword".setup() 	-- Highlights current word.
+require "mini.starter".setup() 		-- Adds nice starterscreen.
+require "mini.move".setup()		-- Allows moving hunks of text.
+require "mini.colors".setup()		-- Allows for customisable themes
+require "mini.animate".setup({
+	cursor = {enable = false},
+	scroll = {enable = false},
+	resize = {enable = false},
+	open = {enable = false},
+	close = {enable = false},
+}) -- Added for smooth animation when switching from light to dark theme
 
--- Notification configuration
+require "mini.indentscope".setup({
+	symbol = '│',
+	draw = {
+		animation = require "mini.indentscope".gen_animation.none(),
+		delay = 0
+	}
+}) -- Shows the indent scope with a line
+
 require "mini.notify".setup({
 	lsp_progress = {
 		enable = false,
 	},
-}) -- Notification window for LSP
-
+}) -- Notification configuration
 
 -- Prettier statusline
 require "lualine".setup({
 	options = {
 		icons_enabled = true,
-		theme = "catppuccin",
 		section_separators = { left = '', right = '' },
 		component_separators = { left = '', right = '' }
 	}
 })
 
--- Allows for bulk commenting according to language.
-require "Comment".setup({})
+dofile(config_path .. "/icons.lua")
 
 -- Add dark mode switcher
-dofile(home .. "/.config/nvim/darkmode.lua")
+dofile(config_path .. "/darkmode.lua")
 
 -- Add all custom keybinds
-dofile(home .. "/.config/nvim/keymaps.lua")
+dofile(config_path .. "/keymaps.lua")
 
 -- Configuring the different LSPs.
 -- lua_ls config.
-dofile(home .. "/.config/nvim/lspc/lua_ls.lua")
--- jdtl config.	
-dofile(home .. "/.config/nvim/lspc/jdtls.lua")
--- Activating emmet-lsp on EJS files
-dofile(home .. "/.config/nvim/lspc/emmet-language-server.lua")
-
-vim.lsp.config('bash-language-server', {})
-vim.lsp.config('htmlhint', {})
-vim.lsp.config('emmet-language-server', {})
-vim.lsp.config('cssls', {})
+dofile(config_path .. "/lspc/lua_ls.lua")
+dofile(config_path .. "/lspc/jdtls.lua")
 
 vim.lsp.config('neocmake', {
-	cmd = { "neocmakelsp", "stdio"},
-})
-
--- Adding the completions capabilities to the LSP
-vim.lsp.config("*", { capabilities = require "cmp_nvim_lsp".default_capabilities() })
-
-vim.lsp.enable({
-	"clangd",
-	"neocmake",
-	"lua_ls",
-	"jdtls",
-	"bashls",
-	"html",
-	"htmlhint",
-	"eslint",
-	"ts_ls",
-	"cssls",
+	cmd = { "neocmakelsp", "stdio" },
 })
 
 -- Setting the colorscheme
 vim.cmd.colorscheme "catppuccin-frappe"
-
--- Enabling ejs files highlighting
-vim.filetype.add({ extension = { ejs = "ejs" } })
-
--- Adding HTML and JS hightlighting to EJS files
-vim.treesitter.language.register("html", "ejs")
-vim.treesitter.language.register("javascript", "ejs")
-vim.treesitter.language.register("embedded_template", "ejs")
-
--- Enable treesitter AFTER colorscheme.
-require "nvim-treesitter.configs".setup({
-	ensure_installed = "all",
-	ignore_install = {
-		"ipkg"
-	},
-	highlight = { enable = true },
-	preview = { icon_provider = "nvim-web-devicons" }
-})
 
 vim.cmd [[ autocmd RecordingEnter * set cmdheight=1 ]]
 vim.cmd [[ autocmd RecordingLeave * set cmdheight=0 ]]
