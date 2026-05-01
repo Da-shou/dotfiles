@@ -15,6 +15,18 @@ correctly on startup according to wiki ]]
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
+-- Configuring the diagnostic icons and colors
+vim.diagnostic.config({
+	signs = {
+		text = {
+			[vim.diagnostic.severity.ERROR] = '',
+			[vim.diagnostic.severity.WARN] = '',
+			[vim.diagnostic.severity.INFO] = '',
+			[vim.diagnostic.severity.HINT] = ''
+		}
+	}
+})
+
 -- Put home directory in a variable
 local config_path = vim.fn.stdpath("config")
 
@@ -69,6 +81,34 @@ require "blink.cmp".setup({
 	sources = {
 		default = { 'lsp', 'path', 'snippets', 'buffer' },
 	},
+	completion = {
+		trigger = {
+			show_on_backspace = false,
+			show_on_backspace_in_keyword = true,
+		},
+		ghost_text = {
+			enabled = true,
+		},
+		menu = {
+			min_width = 15,
+			max_height = 20,
+			draw = {
+				align_to = 'label',
+				padding = 3,
+				columns = { { 'kind_icon' }, { 'label', 'label_description', gap = 3 }},
+			}
+		},
+		documentation = {
+			-- Show documentation with <C-Space>
+			auto_show = false,
+		}
+	},
+	keymap = {
+		preset = 'default',
+	},
+	signature = {
+		enabled = true
+	},
 	fuzzy = { implementation = "prefer_rust" }
 })
 
@@ -77,20 +117,20 @@ require "blink.cmp".setup({
 require "bufresize".setup()
 
 -- mini.nvim addons. Really useful (and fast) stuff !
-require "mini.pairs".setup()      	-- Automatic character pairs.
-require "mini.git".setup()        	-- Allows for git status on bar.
-require "mini.diff".setup()       	-- Allows for diff status on bar.
-require "mini.surround".setup()   	-- Easily surround selections.
-require "mini.cursorword".setup() 	-- Highlights current word.
-require "mini.starter".setup() 		-- Adds nice starterscreen.
-require "mini.move".setup()		-- Allows moving hunks of text.
-require "mini.colors".setup()		-- Allows for customisable themes
+require "mini.pairs".setup()      -- Automatic character pairs.
+require "mini.git".setup()        -- Allows for git status on bar.
+require "mini.diff".setup()       -- Allows for diff status on bar.
+require "mini.surround".setup()   -- Easily surround selections.
+require "mini.cursorword".setup() -- Highlights current word.
+require "mini.starter".setup()    -- Adds nice starterscreen.
+require "mini.move".setup()       -- Allows moving hunks of text.
+require "mini.colors".setup()     -- Allows for customisable themes
 require "mini.animate".setup({
-	cursor = {enable = false},
-	scroll = {enable = false},
-	resize = {enable = false},
-	open = {enable = false},
-	close = {enable = false},
+	cursor = { enable = false },
+	scroll = { enable = false },
+	resize = { enable = false },
+	open = { enable = false },
+	close = { enable = false },
 }) -- Added for smooth animation when switching from light to dark theme
 
 require "mini.indentscope".setup({
@@ -107,16 +147,12 @@ require "mini.notify".setup({
 	},
 }) -- Notification configuration
 
--- Prettier statusline
-require "lualine".setup({
-	options = {
-		icons_enabled = true,
-		section_separators = { left = '', right = '' },
-		component_separators = { left = '', right = '' }
-	}
-})
 
+-- Settings the icons of some filetypes
 dofile(config_path .. "/icons.lua")
+
+-- Lua line status configuration
+dofile(config_path .. "/lualine.lua")
 
 -- Add dark mode switcher
 dofile(config_path .. "/darkmode.lua")

@@ -17,9 +17,6 @@ vim.keymap.set('n', '<leader>rg', ":RG<CR>")
 vim.keymap.set('n', '<leader>b', ":Buffers<CR>")
 vim.keymap.set('n', '<leader>q', ":bdelete<CR>")
 
--- Markdown formatting
-vim.keymap.set('n', '<leader>md', ":Markview<CR>")
-
 -- Run :make command with keybind
 vim.keymap.set('n', '<leader>m', ":make<CR>")
 
@@ -27,7 +24,7 @@ vim.keymap.set('n', '<leader>m', ":make<CR>")
 vim.keymap.set('n', '<leader>lr', ":set invrelativenumber<CR>")
 
 -- Toggle MiniDiff overlay
-vim.keymap.set('n', '<leader>df', function () MiniDiff.toggle_overlay() end, {noremap = true, silent = true})
+vim.keymap.set('n', '<leader>mdf', function () MiniDiff.toggle_overlay() end, {noremap = true, silent = true})
 
 -- Switch to dark mode or light mode
 vim.keymap.set('n', '<leader>sm', SwitchMode)
