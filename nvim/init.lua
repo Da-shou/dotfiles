@@ -51,6 +51,7 @@ vim.pack.add({
 	{ src = "https://github.com/numToStr/Comment.nvim" },
 	{ src = "https://github.com/nvim-lua/plenary.nvim" },
 	{ src = "https://github.com/kwkarlwang/bufresize.nvim" },
+	{ src = "https://github.com/MeanderingProgrammer/render-markdown.nvim" },
 	{ src = "https://github.com/kdheepak/lazygit.nvim" },
 	{ src = "https://github.com/Saghen/blink.cmp" },
 	{ src = "https://github.com/Saghen/blink.lib" },
@@ -76,6 +77,8 @@ require "tree-sitter-manager".setup({
 	auto_install = true,
 	highlight = true,
 })
+
+require "render-markdown".setup()
 
 require "blink.cmp".setup({
 	sources = {
